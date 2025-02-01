@@ -48,6 +48,8 @@ void	add_lines(t_game *game, char *map, int num_lines)
 		}
 		line_no++;
 	}
+	if (!game->map[0])
+		exit_game(game, 1, "EMPTY MAP");
 	close(fd);
 }
 

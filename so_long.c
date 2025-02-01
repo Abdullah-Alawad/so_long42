@@ -1,5 +1,5 @@
 #include "so_long.h"
-
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -14,12 +14,11 @@ int	main(int argc, char **argv)
 	int i = 0;
 	while (game->map[i] != NULL)
 	{
-		ft_printf("%s\n", game->map[i]);
+		printf("%s\n", game->map[i]);
 		i++;
 	}
+	check_map(game);
 	exit_game(game, 0, "so far so good\n");
-	//read_map(game, argv[1]);  y is number of lines, x is number of columns
-	//check_map(game); --> line_length, borders, # of things with saving it to right variable
 	//copy_map(game);
 	//find location of the player and save is in player_x, player_y
 	//flood fill for copy_map, base case is 1, change each place to one, keep decreasing cpy_coin
