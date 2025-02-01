@@ -6,8 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = ft_checker.c ft_errors.c ft_map_border_checker.c ft_map_parse.c \
-		ft_set_game_defaults.c ft_utils1.c
+SRCS = ft_checker.c ft_errors.c ft_set_game_defaults.c ft_map_parse.c
 
 MAIN_SRC = so_long.c
 

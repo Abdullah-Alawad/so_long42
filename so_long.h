@@ -12,6 +12,7 @@
 // colors
 # define RED "\033[1;31m"
 # define BLUE "\033[1;34m"
+# define GREEN "\033[1;32m"
 # define RESET "\033[0m"
 // sprites
 # define PLAYER "sprites/player.xpm"
@@ -46,20 +47,13 @@ typedef struct s_game
 
 void	check_args(int argc, char **argv);
 void	check_map_open(char *map);
-void	loop_fd(int fd);
-void	check_map_valid(char *map);
-void	check_map_shape(char *map);
 void	simple_error(char *message);
-void	free_map(char ***map);
-//check remove 3 below
-void	check_first_line(t_game *game);
-void	check_last_line(t_game *game);
-void	check_sides(t_game *game);
-void	check_map_borders(char *map, t_game *game);
-int		count_lines(char *map);
-void	free_map_while_reading(char **map, int len, int fd);
-void	add_map_to_struct(char *map, t_game *game);
+void	exit_game(t_game *game, int EXIT_CODE, char *message);
 void	set_game_defaults(t_game *game);
-int 	count_map_lines(char **map);
+void	read_map(t_game *game, char *map);
+
+
+
+
 
 #endif

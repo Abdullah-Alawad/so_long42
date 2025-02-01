@@ -1,27 +1,23 @@
 #include "so_long.h"
-/*
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
 
 	check_args(argc, argv);
+	check_map_open(argv[1]);
 	game = malloc(sizeof(t_game));
 	if (!game)
 		simple_error("GAME ALLOCATION FAILED");
 	set_game_defaults(game);
-	check_map_shape(argv[1]);
-	check_map_borders(argv[1], game);
-	ft_printf("I'am here");
-}
-*/
-int	main(int argc, char **argv)
-{
-	t_game	*game;
-
-	game = malloc(sizeof(t_game));
-	if (!game)
-		simple_error("GAME ALLOCATION FAILED");
-	//check_args(argc, argv);
+	read_map(game, argv[1]);
+	int i = 0;
+	while (game->map[i] != NULL)
+	{
+		ft_printf("%s\n", game->map[i]);
+		i++;
+	}
+	exit_game(game, 0, "so far so good\n");
 	//read_map(game, argv[1]);  y is number of lines, x is number of columns
 	//check_map(game); --> line_length, borders, # of things with saving it to right variable
 	//copy_map(game);

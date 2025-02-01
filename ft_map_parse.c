@@ -6,8 +6,8 @@ int	count_lines(char *map)
 	int		num_lines;
 	char	*line;
 
-	num_lines = 0;
 	fd = open(map, O_RDONLY);
+	num_lines = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		num_lines++;
@@ -17,34 +17,22 @@ int	count_lines(char *map)
 	return (num_lines);
 }
 
-void	free_map_while_reading(char **map, int len, int fd)
+void	loop_fd(int fd)
 {
-	int	i;
+	char	*line;
 
-	i = 0;
-	while (i < len)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-	loop_fd(fd);
-	simple_error("MAP ALLOCATION FAILED");
+	while ((line = get_next_line(fd)) != NULL)
+		free(line);
+	close(fd);
 }
 
 // ft_strdup here is modified from the original, if line ends with '\n' it will be removed
-void	add_map_to_struct(char *map, t_game *game)
+void	add_lines(t_game *game, char *map, int num_lines)
 {
 	int		fd;
-	int 	num_lines;
 	int		line_no;
 	char	*line;
 
-	num_lines = count_lines(map);
-	game->map = malloc(sizeof(char *) * (num_lines + 1));
-	if (!game->map)
-		simple_error("MAP ALLOCATION FAILED");
-	game->map[num_lines] = NULL;
 	fd = open(map, O_RDONLY);
 	line_no = 0;
 	while ((line = get_next_line(fd)) != NULL && line_no < num_lines)
@@ -52,8 +40,25 @@ void	add_map_to_struct(char *map, t_game *game)
 		game->map[line_no] = ft_strdup(line);
 		free(line);
 		if (!game->map[line_no])
-			free_map_while_reading(game->map, line_no, fd);
+		{
+			while (line_no >= 0)
+				free(game->map[line_no--]);
+			loop_fd(fd);
+			exit_game(game, 1, "MAP ALLOCATION FAILED");
+		}
 		line_no++;
 	}
 	close(fd);
+}
+
+void	read_map(t_game *game, char *map)
+{
+	int 	num_lines;
+
+	num_lines = count_lines(map);
+	game->map = malloc(sizeof(char *) * (num_lines + 1));
+	if (!game->map)
+		exit_game(game, 1, "MAP ALLOCATION FAILED");
+	game->map[num_lines] = NULL;
+	add_lines(game, map, num_lines);
 }

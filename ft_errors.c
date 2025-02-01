@@ -6,7 +6,7 @@ void	simple_error(char *message)
 	exit(1);
 }
 
-void	free_map(char ***map)
+void	free_map(char **map)
 {
 	int	i;
 
@@ -17,4 +17,21 @@ void	free_map(char ***map)
 		i++;
 	}
 	free(map);
+}
+
+void	exit_game(t_game *game, int EXIT_CODE, char *message)
+{
+	if (game)
+	{
+		if (game->map)
+			free_map(game->map);
+		if (game->cpy_map)
+			free_map(game->cpy_map);
+		free(game);
+	}
+	if (EXIT_CODE == 0)
+		ft_printf(GREEN"%s\n"RESET, message);
+	else
+		ft_printf(RED"[ERROR] %s\n"RESET, message);
+	exit(EXIT_CODE);
 }
