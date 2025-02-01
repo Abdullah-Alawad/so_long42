@@ -26,7 +26,7 @@ void	loop_fd(int fd)
 	close(fd);
 }
 
-// ft_strdup here is modified from the original, if line ends with '\n' it will be removed
+// ft_strdup here is modified from the original, if line ends with '\n' OR '\r' it will be removed
 void	add_lines(t_game *game, char *map, int num_lines)
 {
 	int		fd;
