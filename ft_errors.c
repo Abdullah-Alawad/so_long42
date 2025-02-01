@@ -6,7 +6,7 @@ void	simple_error(char *message)
 	exit(1);
 }
 
-void	free_map(char **map)
+void	free_map(char ***map)
 {
 	int	i;
 

@@ -53,7 +53,7 @@ void	add_map_to_struct(char *map, t_game *game)
 		free(line);
 		if (!game->map[line_no])
 			free_map_while_reading(game->map, line_no, fd);
-		line_len++;
+		line_no++;
 	}
 	close(fd);
 }

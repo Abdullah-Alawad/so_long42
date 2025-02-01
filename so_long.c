@@ -11,4 +11,5 @@ int	main(int argc, char **argv)
 	set_game_defaults(game);
 	check_map_shape(argv[1]);
 	check_map_borders(argv[1], game);
+	ft_printf("I'am here");
 }

@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	check_args(int argc, char **argv)\
+void	check_args(int argc, char **argv)
 {
 	int	param_len;
 

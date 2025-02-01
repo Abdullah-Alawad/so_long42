@@ -2,6 +2,7 @@
 # define SO_LONG_H
 
 # include "libft/libft.h"
+# include <fcntl.h>
 # include <X11/keysym.h>
 //# include <mlx.h>
 
@@ -42,4 +43,23 @@ typedef struct s_game
 	int		is_solvable;
 	int		cpy_coins;
 }	t_game;
-#endf
+
+void	check_args(int argc, char **argv);
+void	check_map_open(char *map);
+void	loop_fd(int fd);
+void	check_map_valid(char *map);
+void	check_map_shape(char *map);
+void	simple_error(char *message);
+void	free_map(char ***map);
+//check remove 3 below
+void	check_first_line(t_game *game);
+void	check_last_line(t_game *game);
+void	check_sides(t_game *game);
+void	check_map_borders(char *map, t_game *game);
+int		count_lines(char *map);
+void	free_map_while_reading(char **map, int len, int fd);
+void	add_map_to_struct(char *map, t_game *game);
+void	set_game_defaults(t_game *game);
+int 	count_map_lines(char **map);
+
+#endif
