@@ -28,12 +28,12 @@ OBJS = ${SRCS:.c=.o}
 MAIN_OBJ = ${MAIN_SRC:.c=.o}
 
 %.o:%.c
-	$(CC) $(CFLAGS) -c $^ -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $^ -o $@
 
 all: ${NAME}
 
 ${NAME}: ${MAIN_OBJ} ${OBJS} libft
-		${CC} ${CFLAGS} ${MAIN_OBJ} ${OBJS} -Llibft -lft -o ${NAME}
+		${CC} ${CFLAGS} ${MAIN_OBJ} ${OBJS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -Llibft -lft -o ${NAME}
 
 libft:
 		make -C libft

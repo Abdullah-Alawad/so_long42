@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <X11/keysym.h>
-//# include <mlx.h>
+# include "mlx_linux/mlx.h"
 
 // map measures
 # define WIDTH 50

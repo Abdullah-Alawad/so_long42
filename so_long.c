@@ -12,6 +12,12 @@
 
 #include "so_long.h"
 
+int	close_win( t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->mlx_win);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -27,8 +33,11 @@ int	main(int argc, char **argv)
 	copy_map(game);
 	save_player_position(game);
 	check_solvability(game);
+	game->mlx = mlx_init();
+	game->mlx_win = mlx_new_window(game->mlx, game->x * 50 , game->y * 50, "Lets Steal the GOLD");
+	mlx_hook(game->mlx_win, 2, 0L, close_win, game);
+	mlx_loop(game->mlx);
 	exit_game(game, 0, "so far so good\n");
-	ft_printf("hi");
 	//game logic
 }
 
