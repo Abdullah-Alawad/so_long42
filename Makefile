@@ -27,13 +27,13 @@ OBJS = ${SRCS:.c=.o}
 
 MAIN_OBJ = ${MAIN_SRC:.c=.o}
 
+%.o:%.c
+	$(CC) $(CFLAGS) -c $^ -o $@
+
 all: ${NAME}
 
 ${NAME}: ${MAIN_OBJ} ${OBJS} libft
 		${CC} ${CFLAGS} ${MAIN_OBJ} ${OBJS} -Llibft -lft -o ${NAME}
-
-.c.o:
-		${CC} ${CFLAGS} -c $< -o $@
 
 libft:
 		make -C libft
