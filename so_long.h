@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalawad <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 14:50:43 by aalawad           #+#    #+#             */
+/*   Updated: 2025/02/02 14:50:44 by aalawad          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -53,9 +65,7 @@ void	set_game_defaults(t_game *game);
 void	read_map(t_game *game, char *map);
 void	check_map(t_game *game);
 void	copy_map(t_game *game);
-
-
-
-
+void	save_player_position(t_game *game);
+void	check_solvability(t_game *game);
 
 #endif

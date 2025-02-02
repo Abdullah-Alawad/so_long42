@@ -1,25 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_map_parse.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalawad <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 14:51:36 by aalawad           #+#    #+#             */
+/*   Updated: 2025/02/02 14:51:51 by aalawad          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	*ft_strdup_till_rn(const char *s)
 {
-    size_t		i;
-    size_t		j;
-    char		*dup;
+	size_t	i;
+	size_t	j;
+	char	*dup;
 
-    i = 0;
-    while (s[i] != '\0' && s[i] != '\n' && s[i] != '\r')
-        i++;
-    dup = (char *)malloc(i + 1);
-    if (dup == NULL)
-        return (NULL);
-    j = 0;
-    while (j < i)
-    {
-        dup[j] = s[j];
-        j++;
-    }
-    dup[j] = '\0';
-    return (dup);
+	i = 0;
+	while (s[i] != '\0' && s[i] != '\n' && s[i] != '\r')
+		i++;
+	dup = (char *)malloc(i + 1);
+	if (dup == NULL)
+		return (NULL);
+	j = 0;
+	while (j < i)
+	{
+		dup[j] = s[j];
+		j++;
+	}
+	dup[j] = '\0';
+	return (dup);
 }
 
 int	count_lines(char *map)
@@ -30,10 +42,12 @@ int	count_lines(char *map)
 
 	fd = open(map, O_RDONLY);
 	num_lines = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
 	{
 		num_lines++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (num_lines);
@@ -43,8 +57,12 @@ void	loop_fd(int fd)
 {
 	char	*line;
 
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
+	{
 		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 }
 
@@ -56,10 +74,12 @@ void	add_lines(t_game *game, char *map, int num_lines)
 
 	fd = open(map, O_RDONLY);
 	line_no = 0;
-	while ((line = get_next_line(fd)) != NULL && line_no < num_lines)
+	line = get_next_line(fd);
+	while (line && line_no < num_lines)
 	{
 		game->map[line_no] = ft_strdup_till_rn(line);
 		free(line);
+		line = get_next_line(fd);
 		if (!game->map[line_no])
 		{
 			line_no--;
@@ -77,7 +97,7 @@ void	add_lines(t_game *game, char *map, int num_lines)
 
 void	read_map(t_game *game, char *map)
 {
-	int 	num_lines;
+	int	num_lines;
 
 	num_lines = count_lines(map);
 	game->map = malloc(sizeof(char *) * (num_lines + 1));

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalawad <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 14:50:34 by aalawad           #+#    #+#             */
+/*   Updated: 2025/02/02 14:50:35 by aalawad          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	main(int argc, char **argv)
@@ -13,10 +25,9 @@ int	main(int argc, char **argv)
 	read_map(game, argv[1]);
 	check_map(game);
 	copy_map(game);
+	save_player_position(game);
+	check_solvability(game);
 	exit_game(game, 0, "so far so good\n");
-	//find location of the player and save is in player_x, player_y
-	//flood fill for copy_map, base case is 1, change each place to one, keep decreasing cpy_coin
-	//error function takes (game, exit_num, msg); free everything in the game struct 
 }
 
 /*

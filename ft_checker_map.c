@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_checker_map.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalawad <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 14:50:25 by aalawad           #+#    #+#             */
+/*   Updated: 2025/02/02 14:50:27 by aalawad          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	check_line_length(t_game *game)
@@ -35,7 +47,7 @@ void	check_map_borders(t_game *game)
 		i++;
 	}
 	i = 0;
-	while(i < game->y - 1)
+	while (i < game->y - 1)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->x - 1] != '1')
 			exit_game(game, 1, "INVALID SIDE MAP BORDER");
@@ -45,8 +57,9 @@ void	check_map_borders(t_game *game)
 
 void	check_map_elements(t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	c;	
 
 	i = 0;
 	while (game->map[i])
@@ -54,14 +67,14 @@ void	check_map_elements(t_game *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] != '1' && game->map[i][j] != '0' && game->map[i][j] != 'P'
-				&& game->map[i][j] != 'E' && game->map[i][j] != 'C')
-				exit_game(game, 1, "INVALID MAP CHARACHTERS ELEMENTS");\
-			else if (game->map[i][j] == 'P')
+			c = game->map[i][j];
+			if (c != '1' && c != '0' && c != 'E' && c != 'P' && c != 'C')
+				exit_game(game, 1, "INVALID MAP CHARACHTERS ELEMENTS");
+			else if (c == 'P')
 				game->players_num++;
-			else if (game->map[i][j] == 'E')
+			else if (c == 'E')
 				game->exit_num++;
-			else if (game->map[i][j] == 'C')
+			else if (c == 'C')
 				game->coins_num++;
 			j++;
 		}
