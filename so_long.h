@@ -52,6 +52,7 @@ void	exit_game(t_game *game, int EXIT_CODE, char *message);
 void	set_game_defaults(t_game *game);
 void	read_map(t_game *game, char *map);
 void	check_map(t_game *game);
+void	copy_map(t_game *game);
 
 
 

@@ -1,5 +1,27 @@
 #include "so_long.h"
 
+char	*ft_strdup_till_rn(const char *s)
+{
+    size_t		i;
+    size_t		j;
+    char		*dup;
+
+    i = 0;
+    while (s[i] != '\0' && s[i] != '\n' && s[i] != '\r')
+        i++;
+    dup = (char *)malloc(i + 1);
+    if (dup == NULL)
+        return (NULL);
+    j = 0;
+    while (j < i)
+    {
+        dup[j] = s[j];
+        j++;
+    }
+    dup[j] = '\0';
+    return (dup);
+}
+
 int	count_lines(char *map)
 {
 	int		fd;
@@ -26,7 +48,6 @@ void	loop_fd(int fd)
 	close(fd);
 }
 
-// ft_strdup here is modified from the original, if line ends with '\n' OR '\r' it will be removed
 void	add_lines(t_game *game, char *map, int num_lines)
 {
 	int		fd;
@@ -37,10 +58,11 @@ void	add_lines(t_game *game, char *map, int num_lines)
 	line_no = 0;
 	while ((line = get_next_line(fd)) != NULL && line_no < num_lines)
 	{
-		game->map[line_no] = ft_strdup(line);
+		game->map[line_no] = ft_strdup_till_rn(line);
 		free(line);
 		if (!game->map[line_no])
 		{
+			line_no--;
 			while (line_no >= 0)
 				free(game->map[line_no--]);
 			loop_fd(fd);

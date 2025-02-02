@@ -11,29 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-char	*ft_strdup(const char *s)
-{
-	size_t		i;
-	size_t		j;
-	char		*dup;
 
-	i = ft_strlen(s);
-	if (s[i - 1] == '\n')
-		i--;
-	dup = (char *)malloc(i + 1);
-	if (dup == NULL)
-		return (NULL);
-	j = 0;
-	while (s[j] != '\0' && s[j] != '\n')
-	{
-		dup[j] = s[j];
-		j++;
-	}
-	dup[j] = '\0';
-	return (dup);
-}
-*/
 char	*ft_strdup(const char *s)
 {
     size_t		i;
@@ -41,7 +19,7 @@ char	*ft_strdup(const char *s)
     char		*dup;
 
     i = 0;
-    while (s[i] != '\0' && s[i] != '\n' && s[i] != '\r')
+    while (s[i] != '\0')
         i++;
     dup = (char *)malloc(i + 1);
     if (dup == NULL)
