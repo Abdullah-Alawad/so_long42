@@ -2,8 +2,11 @@
 
 void	init_images(t_game *game)
 {
-	int w = WIDTH;
-	int h = HEIGHT;
+	int w;
+	int h;
+
+	w = WIDTH;
+	h = HEIGHT;
 	game->player_img = mlx_xpm_file_to_image(game->mlx, PLAYER, &w, &h);
 	if(!game->player_img)
 		exit_game(game, 1, "PLAYER IMAGE ALLOCATION FAILED");
