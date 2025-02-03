@@ -18,6 +18,26 @@ void	simple_error(char *message)
 	exit(1);
 }
 
+int	close_win(t_game *game)
+{
+	exit_game(game, 0, "GAME QUITED SUCCESSFULLY");
+	return (0);
+}
+
+void	remove_images(t_game *game)
+{
+	if (game->player_img)
+		mlx_destroy_image(game->mlx, game->player_img);
+	if (game->wall_img)
+		mlx_destroy_image(game->mlx, game->wall_img);
+	if (game->exit_img)
+		mlx_destroy_image(game->mlx, game->exit_img);
+	if (game->coin_img)
+		mlx_destroy_image(game->mlx, game->coin_img);
+	if (game->floor_img)
+		mlx_destroy_image(game->mlx, game->floor_img);
+}
+
 void	free_map(char **map)
 {
 	int	i;
@@ -35,10 +55,18 @@ void	exit_game(t_game *game, int EXIT_CODE, char *message)
 {
 	if (game)
 	{
+		remove_images(game);
 		if (game->map)
 			free_map(game->map);
 		if (game->cpy_map)
 			free_map(game->cpy_map);
+		if (game->mlx_win)
+			mlx_destroy_window(game->mlx, game->mlx_win);
+		if (game->mlx)
+		{
+			mlx_destroy_display(game->mlx);
+			free(game->mlx);
+		}
 		free(game);
 	}
 	if (EXIT_CODE == 0)
