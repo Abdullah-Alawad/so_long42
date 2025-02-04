@@ -96,14 +96,13 @@ void	init_game(t_game *game, char *map_number)
 	if (!game->mlx)
 		exit_game(game, 1, "MLX INIT FAILED");
 	game->mlx_win = mlx_new_window(game->mlx, game->x * WIDTH,
-			game->y * (HEIGHT - 1), "Steal The GOLD & Stay Away from the ROCKS");
+			game->y * (HEIGHT - 1), "Steal The GOLD Pirate");
 	if (!game->mlx_win)
 		exit_game(game, 1, "MLX WINDOW CREATION FAILED");
 	if (map_number[0] == '1')
 		init_images_1(game);
 	else
 		init_images_2(game);
-	//init_images(game);
 	set_game_frame(game);
 	mlx_hook(game->mlx_win, 17, 0, close_win, game);
 	mlx_key_hook(game->mlx_win, handle_keys, game);
