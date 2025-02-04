@@ -62,7 +62,7 @@ void	set_game_frame(t_game *game)
 			coords.x += WIDTH;
 		}
 		i++;
-		coords.y += HEIGHT;
+		coords.y += HEIGHT - 1;
 	}
 }
 
@@ -72,7 +72,7 @@ void	init_game(t_game *game)
 	if (!game->mlx)
 		exit_game(game, 1, "MLX INIT FAILED");
 	game->mlx_win = mlx_new_window(game->mlx, game->x * WIDTH,
-			game->y * HEIGHT, "Lets Steal the GOLD");
+			game->y * (HEIGHT - 1), "Steal The GOLD & Stay Away from the ROCKS");
 	if (!game->mlx_win)
 		exit_game(game, 1, "MLX WINDOW CREATION FAILED");
 	init_images(game);

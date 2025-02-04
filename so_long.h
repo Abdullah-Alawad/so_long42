@@ -26,13 +26,18 @@
 # define BLUE "\033[1;34m"
 # define GREEN "\033[1;32m"
 # define RESET "\033[0m"
-// sprites
+// map 1 sprites
+# define S_PLAYER "sprites/ufo_p.xpm"
+# define S_WALL "sprites/space_rock.xpm"
+# define S_EXIT "sprites/space_exit.xpm"
+# define S_COIN "sprites/space_gold.xpm"
+# define S_FLOOR "sprites/space_f.xpm"
+// map 2 sprites
 # define PLAYER "sprites/player.xpm"
 # define WALL "sprites/wall.xpm"
 # define EXIT "sprites/exit.xpm"
 # define COIN "sprites/coin.xpm"
 # define FLOOR "sprites/ground.xpm"
-
 // coordinates structure
 typedef struct s_coords
 {
@@ -62,6 +67,7 @@ typedef struct s_game
 	int		moves;
 	int		is_solvable;
 	int		cpy_coins;
+	int		map_code;
 }	t_game;
 
 void	check_args(int argc, char **argv);
