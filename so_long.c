@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	copy_map(game);
 	save_player_position(game);
 	check_solvability(game);
-	init_game(game);
+	init_game(game, argv[2]);
 }
 
 /*

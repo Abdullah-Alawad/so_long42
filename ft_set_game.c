@@ -33,7 +33,6 @@ void	set_game_defaults(t_game *game)
 	game->moves = 0;
 	game->is_solvable = 0;
 	game->cpy_coins = 0;
-	game->map_code = 1;
 }
 
 void	save_player_position(t_game *game)

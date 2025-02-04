@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	init_images(t_game *game)
+void	init_images_1(t_game *game)
 {
 	int	w;
 	int	h;
@@ -20,6 +20,30 @@ void	init_images(t_game *game)
 	if (!game->coin_img)
 		exit_game(game, 1, "COIN IMAGE ALLOCATION FAILED");
 	game->floor_img = mlx_xpm_file_to_image(game->mlx, FLOOR, &w, &h);
+	if (!game->floor_img)
+		exit_game(game, 1, "FLOOR IMAGE ALLOCATION FAILED");
+}
+
+void	init_images_2(t_game *game)
+{
+	int	w;
+	int	h;
+
+	w = WIDTH;
+	h = HEIGHT;
+	game->player_img = mlx_xpm_file_to_image(game->mlx, S_PLAYER, &w, &h);
+	if (!game->player_img)
+		exit_game(game, 1, "PLAYER IMAGE ALLOCATION FAILED");
+	game->wall_img = mlx_xpm_file_to_image(game->mlx, S_WALL, &w, &h);
+	if (!game->wall_img)
+		exit_game(game, 1, "WALL IMAGE ALLOCATION FAILED");
+	game->exit_img = mlx_xpm_file_to_image(game->mlx, S_EXIT, &w, &h);
+	if (!game->exit_img)
+		exit_game(game, 1, "EXIT IMAGE ALLOCATION FAILED");
+	game->coin_img = mlx_xpm_file_to_image(game->mlx, S_COIN, &w, &h);
+	if (!game->coin_img)
+		exit_game(game, 1, "COIN IMAGE ALLOCATION FAILED");
+	game->floor_img = mlx_xpm_file_to_image(game->mlx, S_FLOOR, &w, &h);
 	if (!game->floor_img)
 		exit_game(game, 1, "FLOOR IMAGE ALLOCATION FAILED");
 }
@@ -66,7 +90,7 @@ void	set_game_frame(t_game *game)
 	}
 }
 
-void	init_game(t_game *game)
+void	init_game(t_game *game, char *map_number)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -75,7 +99,11 @@ void	init_game(t_game *game)
 			game->y * (HEIGHT - 1), "Steal The GOLD & Stay Away from the ROCKS");
 	if (!game->mlx_win)
 		exit_game(game, 1, "MLX WINDOW CREATION FAILED");
-	init_images(game);
+	if (map_number[0] == '1')
+		init_images_1(game);
+	else
+		init_images_2(game);
+	//init_images(game);
 	set_game_frame(game);
 	mlx_hook(game->mlx_win, 17, 0, close_win, game);
 	mlx_key_hook(game->mlx_win, handle_keys, game);
