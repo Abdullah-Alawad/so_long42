@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <X11/keysym.h>
-//# include <mlx.h>
+# include "mlx_linux/mlx.h"
 
 // map measures
 # define WIDTH 50
@@ -32,6 +32,13 @@
 # define EXIT "sprites/exit.xpm"
 # define COIN "sprites/coin.xpm"
 # define FLOOR "sprites/ground.xpm"
+
+// coordinates structure
+typedef struct s_coords
+{
+	int	x;
+	int	y;
+}	t_coords;
 
 // game structure
 typedef struct s_game
@@ -67,5 +74,9 @@ void	check_map(t_game *game);
 void	copy_map(t_game *game);
 void	save_player_position(t_game *game);
 void	check_solvability(t_game *game);
+void	init_game(t_game *game);
+int		close_win(t_game *game);
+int		handle_keys(int key_code, t_game *game);
+void	set_game_frame(t_game *game);
 
 #endif
