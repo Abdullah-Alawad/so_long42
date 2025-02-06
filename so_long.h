@@ -64,7 +64,6 @@ typedef struct s_game
 	int		players_num;
 	int		coins_num;
 	int		exit_num;
-	int		moves;
 	int		is_solvable;
 	int		cpy_coins;
 }	t_game;
