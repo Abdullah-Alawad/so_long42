@@ -40,7 +40,13 @@ void	check_args(int argc, char **argv)
 	if (ft_strlen(argv[2]) != 1)
 	{
 		ft_printf(RED"[ERROR] INVALID MAP NUMBER\n"RESET);
-		ft_printf(BLUE"EXPECTED: ONLY ONE NUMBER 1 OR 2\n"RESET);
+		ft_printf(BLUE"EXPECTED: ONE NUMBER ONLY 1 OR 2\n"RESET);
+		exit(1);
+	}
+	if (argv[2][0] != '1' && argv[2][0] != '2')
+	{
+		ft_printf(RED"[ERROR] INVALID MAP NUMBER\n"RESET);
+		ft_printf(BLUE"EXPECTED: ONE NUMBER ONLY 1 OR 2\n"RESET);
 		exit(1);
 	}
 }
