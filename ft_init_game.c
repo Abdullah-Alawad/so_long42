@@ -67,7 +67,30 @@ void	transform(t_game *game, int i, int j, t_coords coords)
 			game->floor_img, coords.x, coords.y);
 }
 
-void	set_game_frame(t_game *game)
+void	set_game_frame_1(t_game *game)
+{
+	int			i;
+	int			j;
+	t_coords	coords;
+
+	i = 0;
+	coords.y = 0;
+	while (i < game->y)
+	{
+		j = 0;
+		coords.x = 0;
+		while (j < game->x)
+		{
+			transform(game, i, j, coords);
+			j++;
+			coords.x += WIDTH;
+		}
+		i++;
+		coords.y += HEIGHT;
+	}
+}
+
+void	set_game_frame_2(t_game *game)
 {
 	int			i;
 	int			j;
@@ -90,7 +113,23 @@ void	set_game_frame(t_game *game)
 	}
 }
 
-void	init_game(t_game *game, char *map_number)
+void	init_game_1(t_game *game)
+{
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		exit_game(game, 1, "MLX INIT FAILED");
+	game->mlx_win = mlx_new_window(game->mlx, game->x * WIDTH,
+			game->y * HEIGHT, "Steal The GOLD Pirate");
+	if (!game->mlx_win)
+		exit_game(game, 1, "MLX WINDOW CREATION FAILED");
+	init_images_1(game);
+	set_game_frame_1(game);
+	mlx_hook(game->mlx_win, 17, 0, close_win, game);
+	mlx_key_hook(game->mlx_win, handle_keys, game);
+	mlx_loop(game->mlx);
+}
+
+void	init_game_2(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -99,11 +138,8 @@ void	init_game(t_game *game, char *map_number)
 			game->y * (HEIGHT - 1), "Steal The GOLD Pirate");
 	if (!game->mlx_win)
 		exit_game(game, 1, "MLX WINDOW CREATION FAILED");
-	if (map_number[0] == '1')
-		init_images_1(game);
-	else
-		init_images_2(game);
-	set_game_frame(game);
+	init_images_2(game);
+	set_game_frame_2(game);
 	mlx_hook(game->mlx_win, 17, 0, close_win, game);
 	mlx_key_hook(game->mlx_win, handle_keys, game);
 	mlx_loop(game->mlx);

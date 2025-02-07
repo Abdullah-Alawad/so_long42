@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <X11/keysym.h>
+# include <X11/X.h>
 # include "mlx_linux/mlx.h"
 
 // map measures
@@ -78,9 +79,12 @@ void	check_map(t_game *game);
 void	copy_map(t_game *game);
 void	save_player_position(t_game *game);
 void	check_solvability(t_game *game);
-void	init_game(t_game *game, char *map_number);
+void	init_game_1(t_game *game);
+void	init_game_2(t_game *game);
 int		close_win(t_game *game);
 int		handle_keys(int key_code, t_game *game);
 void	set_game_frame(t_game *game);
+void	set_e_to_1(t_game *game);
+void	free_map(char **map);
 
 #endif

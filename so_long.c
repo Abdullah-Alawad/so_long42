@@ -27,16 +27,8 @@ int	main(int argc, char **argv)
 	copy_map(game);
 	save_player_position(game);
 	check_solvability(game);
-	init_game(game, argv[2]);
+	if (argv[2][0] == '1')
+		init_game_1(game);
+	else
+		init_game_2(game);
 }
-
-/*
-	int fd = open(argv[1], O_RDONLY);
-	char	*line = get_next_line(fd);
-	int i = 0;
-	while(line[i])
-	{
-		ft_printf("%d\n", line[i]);
-		i++;
-	} 
-*/
