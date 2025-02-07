@@ -30,10 +30,8 @@ void	set_game_defaults(t_game *game)
 	game->players_num = 0;
 	game->coins_num = 0;
 	game->exit_num = 0;
-	game->moves = 0;
 	game->is_solvable = 0;
 	game->cpy_coins = 0;
-	game->map_code = 1;
 }
 
 void	save_player_position(t_game *game)
@@ -51,6 +49,28 @@ void	save_player_position(t_game *game)
 			{
 				game->p_y = i;
 				game->p_x = j;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	set_e_to_1(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->y)
+	{
+		j = 0;
+		while (j < game->x)
+		{
+			if (game->cpy_map[i][j] == 'E')
+			{
+				game->cpy_map[i][j] = '1';
 				return ;
 			}
 			j++;

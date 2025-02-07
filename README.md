@@ -10,6 +10,9 @@
 
 <div align="center">
 <img align="center"  width="600" src="https://github.com/Abdullah-Alawad/imgs/blob/main/so_long_game.png">
+  <br>
+  <br>
+<img align="center"  width="600" src="https://github.com/Abdullah-Alawad/imgs/blob/main/so_long_game_2.png">
 </div>
 <br>
 <br>
@@ -30,10 +33,12 @@ This project is about developing a 2D game that can be interacted with using you
 * After that you're ready to compile the project using these commands respectivley:
 ```shell
 > make
-> ./so_long map.ber
+> ./so_long <map_file> <map_number>
 ```
 > [!WARNING]
 > Maps must have the ***.ber*** extension
+> 
+> Map number can be 1 or 2
 
 ## How To Play
 * The number of movements must be displayed in the terminal.
