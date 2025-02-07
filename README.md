@@ -38,7 +38,7 @@ This project is about developing a 2D game that can be interacted with using you
 > [!WARNING]
 > Maps must have the ***.ber*** extension
 > 
-> Map number can be 1 or 2
+> Map number must be 1 or 2
 
 ## How To Play
 * The number of movements must be displayed in the terminal.
