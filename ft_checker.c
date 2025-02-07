@@ -37,6 +37,12 @@ void	check_args(int argc, char **argv)
 		ft_printf(BLUE"EXPECTED: <map>.ber\n"RESET);
 		exit(1);
 	}
+	if (ft_strlen(argv[2]) != 1)
+	{
+		ft_printf(RED"[ERROR] INVALID MAP NUMBER\n"RESET);
+		ft_printf(BLUE"EXPECTED: ONLY ONE NUMBER 1 OR 2\n"RESET);
+		exit(1);
+	}
 }
 
 void	check_map_open(char *map)
