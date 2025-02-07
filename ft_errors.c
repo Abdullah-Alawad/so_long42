@@ -26,8 +26,14 @@ int	close_win(t_game *game)
 
 void	remove_images(t_game *game)
 {
-	if (game->player_img)
-		mlx_destroy_image(game->mlx, game->player_img);
+	if (game->cat_down)
+		mlx_destroy_image(game->mlx, game->cat_down);
+	if (game->cat_up)
+		mlx_destroy_image(game->mlx, game->cat_up);
+	if (game->cat_left)
+		mlx_destroy_image(game->mlx, game->cat_left);
+	if (game->cat_right)
+		mlx_destroy_image(game->mlx, game->cat_right);
 	if (game->wall_img)
 		mlx_destroy_image(game->mlx, game->wall_img);
 	if (game->exit_img)

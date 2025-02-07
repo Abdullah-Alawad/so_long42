@@ -7,9 +7,18 @@ void	init_images(t_game *game)
 
 	w = WIDTH;
 	h = HEIGHT;
-	game->player_img = mlx_xpm_file_to_image(game->mlx, PLAYER, &w, &h);
-	if (!game->player_img)
-		exit_game(game, 1, "PLAYER IMAGE ALLOCATION FAILED");
+	game->cat_down = mlx_xpm_file_to_image(game->mlx, CAT_DOWN, &w, &h);
+	if (!game->cat_down)
+		exit_game(game, 1, "CAT DOWN IMAGE ALLOCATION FAILED");
+	game->cat_up = mlx_xpm_file_to_image(game->mlx, CAT_UP, &w, &h);
+	if (!game->cat_up)
+		exit_game(game, 1, "CAT UP IMAGE ALLOCATION FAILED");
+	game->cat_left = mlx_xpm_file_to_image(game->mlx, CAT_LEFT, &w, &h);
+	if (!game->cat_left)
+		exit_game(game, 1, "CAT LEFT IMAGE ALLOCATION FAILED");
+	game->cat_right = mlx_xpm_file_to_image(game->mlx, CAT_RIGHT, &w, &h);
+	if (!game->cat_right)
+		exit_game(game, 1, "CAT RIGHT IMAGE ALLOCATION FAILED");
 	game->wall_img = mlx_xpm_file_to_image(game->mlx, WALL, &w, &h);
 	if (!game->wall_img)
 		exit_game(game, 1, "WALL IMAGE ALLOCATION FAILED");
@@ -37,7 +46,7 @@ void	transform(t_game *game, int i, int j, t_coords coords)
 			game->coin_img, coords.x, coords.y);
 	else if (game->map[i][j] == 'P')
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
-			game->player_img, coords.x, coords.y);
+			game->cat_down, coords.x, coords.y);
 	else
 		mlx_put_image_to_window(game->mlx, game->mlx_win,
 			game->floor_img, coords.x, coords.y);
@@ -62,7 +71,7 @@ void	set_game_frame(t_game *game)
 			coords.x += WIDTH;
 		}
 		i++;
-		coords.y += HEIGHT - 1;
+		coords.y += HEIGHT;
 	}
 }
 
@@ -72,7 +81,7 @@ void	init_game(t_game *game)
 	if (!game->mlx)
 		exit_game(game, 1, "MLX INIT FAILED");
 	game->mlx_win = mlx_new_window(game->mlx, game->x * WIDTH,
-			game->y * (HEIGHT - 1), "Steal The GOLD & Stay Away from the ROCKS");
+			game->y * (HEIGHT), "Steal The GOLD & Stay Away from the ROCKS");
 	if (!game->mlx_win)
 		exit_game(game, 1, "MLX WINDOW CREATION FAILED");
 	init_images(game);

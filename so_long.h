@@ -33,11 +33,15 @@
 # define S_COIN "sprites/space_gold.xpm"
 # define S_FLOOR "sprites/space_f.xpm"
 // map 2 sprites
-# define PLAYER "sprites/player.xpm"
-# define WALL "sprites/wall.xpm"
-# define EXIT "sprites/exit.xpm"
-# define COIN "sprites/coin.xpm"
-# define FLOOR "sprites/ground.xpm"
+//# define PLAYER "sprites/player.xpm"
+# define CAT_DOWN "sprites/cat_down.xpm"
+# define CAT_UP "sprites/cat_up.xpm"
+# define CAT_LEFT "sprites/cat_left.xpm"
+# define CAT_RIGHT "sprites/cat_right.xpm"
+# define WALL "sprites/cat_wall.xpm"
+# define EXIT "sprites/exit_cat.xpm"
+# define COIN "sprites/coll_cat.xpm"
+# define FLOOR "sprites/cat_floor.xpm"
 // coordinates structure
 typedef struct s_coords
 {
@@ -50,7 +54,10 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*mlx_win;
-	void	*player_img;
+	void	*cat_down;
+	void	*cat_up;
+	void	*cat_left;
+	void	*cat_right;
 	void	*wall_img;
 	void	*exit_img;
 	void	*coin_img;

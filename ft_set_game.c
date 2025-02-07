@@ -16,7 +16,10 @@ void	set_game_defaults(t_game *game)
 {
 	game->mlx = NULL;
 	game->mlx_win = NULL;
-	game->player_img = NULL;
+	game->cat_down = NULL;
+	game->cat_up = NULL;
+	game->cat_left = NULL;
+	game->cat_right = NULL;
 	game->wall_img = NULL;
 	game->exit_img = NULL;
 	game->coin_img = NULL;

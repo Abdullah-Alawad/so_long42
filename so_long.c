@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	int fd = open(argv[1], O_RDONLY);
 	char	*line = get_next_line(fd);
 	int i = 0;
-	while(line[i])
+	while(line[i]) 
 	{
 		ft_printf("%d\n", line[i]);
 		i++;
