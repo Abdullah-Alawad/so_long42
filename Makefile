@@ -26,25 +26,25 @@ MAIN_SRC = so_long.c
 
 OBJS = ${SRCS:.c=.o}
 
-MAIN_OBJ = ${MAIN_SRC:.c=.o}
+MAIN_OBJ = so_long.o
 
-%.o:%.c
+%.o:%.c so_long.h
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-all: ${NAME}
+all: ${NAME} libft
 
-${NAME}: ${MAIN_OBJ} ${OBJS} libft/libft.a
+libft:
+	make -C libft
+
+${NAME}: ${MAIN_OBJ} ${OBJS}
 		${CC} ${CFLAGS} ${MAIN_OBJ} ${OBJS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -Llibft -lft -o ${NAME}
-
-libft/libft.a:
-		make -C libft
 
 clean:
 		${RM} ${MAIN_OBJ} ${OBJS}
-		make -C libft clean
+		make -C libft fclean
 
 fclean: clean
-		${RM} ${NAME} libft/libft.a
+		${RM} ${NAME}
 
 re: fclean all
 
